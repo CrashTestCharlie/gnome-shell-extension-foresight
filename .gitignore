@@ -1,7 +1,5 @@
 *.zip
 node_modules/
-package-lock.json
-package.json
 docs/
 
 # gettext backup files

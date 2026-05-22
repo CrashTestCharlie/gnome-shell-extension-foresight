@@ -46,30 +46,41 @@ If you wish to make changes to the Foresight codebase, you will likely want to b
 git clone https://github.com/pesader/gnome-shell-extension-foresight.git
 ```
 
-You can then build and install the extension with:
+Install the JavaScript tooling (currently just ESLint and `eslint-plugin-jsdoc`):
 
 ```bash
 cd gnome-shell-extension-foresight
-make build && make install
+npm install
+```
+
+You can then build and install the extension with:
+
+```bash
+npm run install-extension
 ```
 
 You can run a nested session of GNOME Shell to test the extension out with:
 
 ```bash
-make run
+env MUTTER_DEBUG_DUMMY_MODE_SPECS=1256x768 dbus-run-session -- gnome-shell --nested --wayland
 ```
 
-Before submitting a pull request, make sure you install and run the linter with:
+Or with two dummy monitors:
 
 ```bash
-make lint-install # install the linter
-make lint         # run the linter
+env MUTTER_DEBUG_NUM_DUMMY_MONITORS=2 dbus-run-session -- gnome-shell --nested --wayland
+```
+
+Before submitting a pull request, make sure you run the linter:
+
+```bash
+npm run lint
 ```
 
 You can also have the linter attempt to fix the errors it found with:
 
 ```bash
-make lint-fix
+npm run lint:fix
 ```
 
 ## Attribution
@@ -87,7 +98,7 @@ make lint-fix
 
 ### Build system
 
-- Makefile: inspired by the Makefiles of [Caffeine](https://github.com/eonpatapon/gnome-shell-extension-caffeine/blob/master/Makefile) and [Blocker](https://github.com/pesader/gnome-shell-extension-blocker/blob/main/Makefile)
+- Earlier Makefile-based build (now replaced by npm scripts in `package.json`): inspired by the Makefiles of [Caffeine](https://github.com/eonpatapon/gnome-shell-extension-caffeine/blob/master/Makefile) and [Blocker](https://github.com/pesader/gnome-shell-extension-blocker/blob/main/Makefile)
 - GitHub Actions workflow for linting: again, inspired [Caffeine](https://github.com/eonpatapon/gnome-shell-extension-caffeine/tree/master/.github/workflows) and [Blocker](https://github.com/pesader/gnome-shell-extension-blocker/blob/main/.github/workflows/linter.yml)
 
 ## Gratitude

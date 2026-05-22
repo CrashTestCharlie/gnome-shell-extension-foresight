@@ -9,17 +9,21 @@ Foresight is a GNOME Shell Extension (GJS / ES modules) that opens the activitie
 ## Commands
 
 ```bash
-make build         # gnome-extensions pack → foresight@pesader.dev.shell-extension.zip
-make install       # build, then install via gnome-extensions install --force
-make run           # nested wayland gnome-shell session for testing
-make run-multimonitor  # nested session with 2 dummy monitors
+npm install                # installs eslint@9.19.0 + eslint-plugin-jsdoc from package.json
+npm run build              # gnome-extensions pack → foresight@pesader.dev.shell-extension.zip
+npm run install-extension  # build, then install via gnome-extensions install --force
+npm run lint               # eslint "**/*.js" --no-warn-ignored
+npm run lint:fix           # same, with --fix
+npm run clean              # remove the .zip and docs/
 
-make lint-install  # installs eslint@9.19.0 + eslint-plugin-jsdoc
-make lint          # npx eslint "**/*.js" --no-warn-ignored
-make lint-fix      # same, with --fix
+# Nested gnome-shell sessions for manual testing (not npm scripts; just raw commands):
+env MUTTER_DEBUG_DUMMY_MODE_SPECS=1256x768 dbus-run-session -- gnome-shell --nested --wayland
+env MUTTER_DEBUG_NUM_DUMMY_MONITORS=2 dbus-run-session -- gnome-shell --nested --wayland
 ```
 
-The lint config (`eslint.config.mjs`) composes `lint/eslintrc-gjs.mjs` (upstream GJS rules) and `lint/eslintrc-shell.mjs` (Shell-specific rules). After enabling the extension in the nested session, reload it with `Alt+F2` → `r` is **not** available on Wayland — re-run `make install` and restart the nested session.
+Note: `npm run install` will NOT work — npm intercepts the `install` argument and runs the install lifecycle instead of the script. Always use `npm run install-extension`.
+
+The lint config (`eslint.config.mjs`) composes `lint/eslintrc-gjs.mjs` (upstream GJS rules) and `lint/eslintrc-shell.mjs` (Shell-specific rules). After enabling the extension in the nested session, reload it with `Alt+F2` → `r` is **not** available on Wayland — re-run `npm run install-extension` and restart the nested session.
 
 ## Architecture
 
