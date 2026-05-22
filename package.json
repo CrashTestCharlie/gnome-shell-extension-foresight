@@ -1,0 +1,19 @@
+{
+  "name": "foresight-gnome-shell",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "GNOME Shell extension that automagically opens the activities view on empty workspaces.",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "build": "gnome-extensions pack --force foresight@pesader.dev",
+    "install-extension": "npm run build && gnome-extensions install foresight@pesader.dev.shell-extension.zip --force",
+    "lint": "eslint \"**/*.js\" --no-warn-ignored",
+    "lint:fix": "eslint \"**/*.js\" --no-warn-ignored --fix",
+    "clean": "rm -f foresight@pesader.dev.shell-extension.zip && rm -rf docs"
+  },
+  "devDependencies": {
+    "eslint": "9.19.0",
+    "eslint-plugin-jsdoc": "^50.6.0"
+  }
+}
