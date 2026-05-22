@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Foresight is a GNOME Shell Extension (GJS / ES modules) that opens the activities overview automatically when the current workspace becomes empty, or when the user switches to an already-empty workspace. It targets GNOME Shell 46–49 — changes that touch shell APIs must remain compatible across that range (see `foresight@pesader.dev/metadata.json` → `shell-version`).
+Foresight is a GNOME Shell Extension (GJS / ES modules) that opens the activities overview automatically when the current workspace becomes empty, or when the user switches to an already-empty workspace. It targets GNOME Shell 46–50 — changes that touch shell APIs must remain compatible across that range (see `foresight@pesader.dev/metadata.json` → `shell-version`).
 
 ## Commands
 
